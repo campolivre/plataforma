@@ -1,24 +1,19 @@
-# campolivre
+# Plataforma Campo Livre
+O Campo Livre é uma plataforma que facilita o produtor rural na venda de seus produtos direto para atacadistas e varejistas, além de ser um marketplace de insumos e serviços agrícolas. 
 
-## Project setup
-```
-npm install
-```
+## Tecnologias Utilizadas
+Vue.js<br />
+Vuex<br />
+Vue Router<br />
+Node<br />
+SASS<br />
+HTML5
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Endereço da Plataforma
+https://campolivre.com.br
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Serviço de Renderização
+Render (<a href="https://render.com" target="_new">render.com</a>)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Serviço de Hospedagem
+SiteGround (<a href="https://siteground.com" target="_new">siteground.com</a>)
