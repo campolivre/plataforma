@@ -1,5 +1,5 @@
 # Plataforma Campo Livre
-O Campo Livre é uma plataforma que facilita o produtor rural na venda de seus produtos direto para atacadistas e varejistas, além de ser um marketplace de insumos e serviços agrícolas. 
+O Campo Livre é uma plataforma que auxilia o produtor rural na venda de seus produtos direto para atacadistas e varejistas, além de ser um marketplace de insumos e serviços agrícolas. 
 
 ## Tecnologias Utilizadas
 Vue.js<br />
