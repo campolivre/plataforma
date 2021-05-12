@@ -36,7 +36,7 @@
           </div>
         </div>
       </form>
-      <button class="btn-main-filter">Encontrar Ofertas</button>
+      <router-link to="/buscaOferta"><button class="btn-main-filter">Encontrar Ofertas</button></router-link>
       <router-link to="#">Produtor, anuncie grátis a sua produção</router-link>
     </div>
 

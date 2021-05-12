@@ -266,7 +266,7 @@ export default {
 .bg-modal-darken {
   display: flex;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.50);
   width: 100%;
   height: 100%;
   z-index: 20;
@@ -277,7 +277,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: calc(320px - 50px);
+  width: calc(250px - 50px);
   min-height: 100%;
   padding: 80px 25px 25px; 
   background-color: #FFFFFF;
@@ -323,8 +323,8 @@ export default {
 /* Menu Mobile: Efeitos */
 .menu-mobile-slide-in {
   position: absolute;
-  left: -320px;
-  width: 320px;
+  left: -250px;
+  width: 250px;
   -webkit-animation: efeito-menu-mobile-slideIn 0.5s forwards;
   -webkit-animation-delay: 0s;
   animation: efeito-menu-mobile-slideIn 0.5s forwards;
@@ -340,18 +340,18 @@ export default {
 .menu-mobile-slide-out {
   position: absolute;
   left: 0px;
-  width: 320px;
+  width: 250px;
   -webkit-animation: efeito-menu-mobile-slideOut 0.5s forwards;
   -webkit-animation-delay: 0s;
   animation: efeito-menu-mobile-slideOut 0.5s forwards;
   animation-delay: 0s;
 }
 
-@-webkit-keyframes menu-mobile-slideOut { 100% { left: -320px; visibility: hidden; } }
-@-o-keyframes menu-mobile-slideOut { 100% { left: -320px; visibility: hidden; } }
-@-ms-keyframes menu-mobile-slideOut { 100% { left: -320px; visibility: hidden; } }
-@-moz-keyframes menu-mobile-slideOut { 100% { left: -320px; visibility: hidden; } }
-@keyframes menu-mobile-slideOut { 100% { left: -320px; visibility: hidden; } }
+@-webkit-keyframes menu-mobile-slideOut { 100% { left: -250px; visibility: hidden; } }
+@-o-keyframes menu-mobile-slideOut { 100% { left: -250px; visibility: hidden; } }
+@-ms-keyframes menu-mobile-slideOut { 100% { left: -250px; visibility: hidden; } }
+@-moz-keyframes menu-mobile-slideOut { 100% { left: -250px; visibility: hidden; } }
+@keyframes menu-mobile-slideOut { 100% { left: -250px; visibility: hidden; } }
 
 @media (max-width: 80rem) {
   /* Menu Desktop: Flex Container */
@@ -393,6 +393,7 @@ export default {
     display: flex;
     position: fixed;
     width: calc(100% - 40px);
+    max-width: calc(100vw - 40px);
     height: 40px;
     justify-content: flex-start;
     align-items: center;
