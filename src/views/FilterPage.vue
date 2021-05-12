@@ -97,7 +97,6 @@
 
       <div class="main-filter-body">
         <div class="filter-content">
-
           <!-- ÁREA DO FILTRO -->
           <div class="filter-content-header">
             <p>Ofertas de legumes em <br /><span class="city-highlight">Rio Claro / SP</span></p>
@@ -133,6 +132,7 @@
               <span @click="clearTag(index)">X</span>
             </div>
           </div>
+
 
           <!-- ÁREA DOS CARDS DE OFERTAS -->
           <div class="filter-content-offers-area">
@@ -394,7 +394,7 @@ export default {
 /* Filtro Área do Mapa: Flex C */
 .filter-breadcrumbs {
   display: flex;
-  width: 100%;
+  width: calc(100% - 40px);
   padding: 12px 20px 6px;
   font-size: 1.4rem;
 }
@@ -840,8 +840,7 @@ export default {
   /* Filtro Área do Mapa: Flex C */
   .filter-breadcrumbs {
     display: flex;
-    width: 100%;
-    max-width: 100vw;
+    width: calc (100% - 40px);
     padding: 12px 20px 6px;
     font-size: 1.4rem;
   }
@@ -1030,7 +1029,7 @@ export default {
     align-items: center;
     width: 100%;
     max-width: 100vw;
-    height: calc(100% - 60px);
+    height: 100%;
     max-height: 100vh;
     z-index: 100;
     background-color: rgba(0, 0, 0, 0.5);
@@ -1045,7 +1044,7 @@ export default {
     background: #FFFFFF;
     width: 90%;
     max-width: 100vw;
-    height: 90%;
+    height: 94%;
     border-radius: 20px;
   }
 
