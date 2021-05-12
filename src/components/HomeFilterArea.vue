@@ -191,6 +191,7 @@ form .form-filter-category {
   border-right: 1px solid #707070;
   border-left: 1px solid #707070;
   border-bottom: 1px solid #707070;
+  border-radius: 0px;
   border-bottom-left-radius: 8px;
   width: calc(50% - 32px);
   font-size: 1.6rem;
@@ -220,9 +221,11 @@ form .form-filter-price {
   border-left: none;
   border-right: 1px solid #707070;
   border-bottom: 1px solid #707070;
+  border-radius: 0px;
   border-bottom-right-radius: 8px;
   width: calc(50% - 32px);
   font-size: 1.6rem;
+  font-weight: 400;
   padding: 25px 16px 10px 16px;
   background: url(https://campolivre.com.br/chevron-down-select.png) no-repeat right #FFF;
   -webkit-appearance: none;
