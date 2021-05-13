@@ -54,7 +54,7 @@
     <!-- MENU MOBILE -->
     <div class="menu-mobile">
       <i @click="toggleLoginMobile()" class="fas fa-bars btn-hamburger-menu"></i>
-      <img id="campolivre-logo" src="@/assets/campolivre-logo.png" alt="Logotipo da empresa Campo Livre que possui círculos conectados em rede com ícones do campo, indicando a área de atuação que é auxiliar produtores rurais a vender seus produtos diretamente para varejistas e atacadistas." />
+      <router-link to="/"><img id="campolivre-logo" src="@/assets/campolivre-logo.png" alt="Logotipo da empresa Campo Livre que possui círculos conectados em rede com ícones do campo, indicando a área de atuação que é auxiliar produtores rurais a vender seus produtos diretamente para varejistas e atacadistas." /></router-link>
     </div>
   </div>
 </template>
@@ -393,7 +393,6 @@ export default {
     display: flex;
     position: fixed;
     width: calc(100% - 40px);
-    max-width: calc(100vw - 40px);
     height: 40px;
     justify-content: flex-start;
     align-items: center;
