@@ -1,13 +1,13 @@
 <template>
   <div class="card-offer">
-    <img src="@/assets/card-offer-tomato.png" alt="Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas." />
+    <img :src="require('../assets/' + offer.image)" :alt="offer.imageAlt" />
     <div class="card-offer-info">
-      <p>{{ offerCategory }}</p>
-      <p>{{ offerTitle }}</p>
-      <p>{{ offerCity }} / {{ offerState }}</p>
-      <div class="card-offer-features"><i class="fas fa-box"></i><span>{{ offerQuantity }}</span><i class="fas fa-truck"></i><span>{{ offerTransportation }}</span></div>
+      <p>{{ offer.category }}</p>
+      <p>{{ offer.title }}</p>
+      <p>{{ offer.city }} / {{ offer.state }}</p>
+      <div class="card-offer-features"><i class="fas fa-box"></i><span>{{ offer.quantity }}</span><i class="fas fa-truck"></i><span>{{ offer.transportation }}</span></div>
       <div class="card-offer-price">
-        <p>R$ {{ offerPrice }} / {{ offerUnity }}</p>
+        <p>R$ {{ offer.price }} / {{ offer.unity }}</p>
         <button @click="toggleLoveIt()" class="btn-love-it"><i v-bind:class=" { 'far fa-heart': !showLoveIt, 'fas fa-heart': showLoveIt, 'btn-love-it-red': showLoveIt }"></i></button>
       </div>
     </div>
@@ -16,19 +16,17 @@
 
 <script>
 export default {
+  props: {
+    offer: Object
+  },
   data() {
     return {
-      offerId: 1,
-      offerImage: '@/assets/card-offer-tomato.png',
-      offerImageAlt: 'Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas.', 
-      offerCategory: 'Legumes',
-      offerTitle: 'Tomate Caqui',
-      offerCity: 'Rio Claro',
-      offerState: 'SP',
-      offerQuantity: '80',
-      offerTransportation: 'Próprio',
-      offerPrice: '80,00',
-      offerUnity: 'Caixa'
+      showLoveIt: false
+    }
+  },
+  methods: {
+    toggleLoveIt() {
+      this.showLoveIt = !this.showLoveIt
     }
   }
 }

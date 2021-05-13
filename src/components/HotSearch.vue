@@ -8,10 +8,7 @@
       <h3>Principais ofertas de legumes recomendadas para você</h3>
 
       <div class="home-card-offers-area">
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
+        <CardOffer v-for="offer in offers" :key="offer.id" :offer="offer" />
       </div>
       <router-link to="/buscaOferta"><button class="btn-main-filter hot-filter-button">Ver mais ofertas de legumes</button></router-link>
 
@@ -22,10 +19,7 @@
       <h3>Principais ofertas de outras categorias</h3>
 
       <div class="home-card-offers-area">
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
+        <CardOffer v-for="offer in offersCat" :key="offer.id" :offer="offer" />
       </div>
       <router-link to="/buscaOferta"><button class="btn-main-filter hot-filter-button">Ver mais ofertas</button></router-link>
     </div>
@@ -38,111 +32,112 @@ import CardOffer from "@/components/CardOffer.vue";
 export default {
   data() {
     return {
-      showLoveIt: false,
       offers: [
         {
-          offerId: 1,
-          offerImage: '@/assets/card-offer-tomato.png',
-          offerImageAlt: 'Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas.', 
-          offerCategory: 'Legumes',
-          offerTitle: 'Tomate Caqui',
-          offerCity: 'Rio Claro',
-          offerState: 'SP',
-          offerQuantity: '80',
-          offerTransportation: 'Próprio',
-          offerPrice: '80,00',
-          offerUnity: 'Caixa'
+          id: 1,
+          image: 'card-offer-tomato.png',
+          imageAlt: 'Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas.', 
+          category: 'LEGUMES',
+          title: 'Tomate Caqui',
+          city: 'Rio Claro',
+          state: 'SP',
+          quantity: '80',
+          transportation: 'Próprio',
+          price: '80,00',
+          unity: 'Caixa'
         },
         {
-          offerId: 2,
-          offerImage: '@/assets/card-offer-bell-pepper.png',
-          offerImageAlt: 'Imagem de um pimentão verde na mão de uma colhetora na fazenda.', 
-          offerCategory: 'Legumes',
-          offerTitle: 'Pimentão Verde',
-          offerCity: 'Bauru',
-          offerState: 'SP',
-          offerQuantity: '180',
-          offerTransportation: 'Próprio',
-          offerPrice: '120,00',
-          offerUnity: 'Caixa'
+          id: 2,
+          image: 'card-offer-bell-pepper.png',
+          imageAlt: 'Imagem de um pimentão verde na mão de uma colhetora na fazenda.', 
+          category: 'LEGUMES',
+          title: 'Pimentão Verde',
+          city: 'Bauru',
+          state: 'SP',
+          quantity: '180',
+          transportation: 'Próprio',
+          price: '120,00',
+          unity: 'Caixa'
         },
         {
-          offerId: 3,
-          offerImage: '@/assets/card-offer-carrot.png',
-          offerImageAlt: 'Imagem de um maço de cenouras na mão do agricultor.', 
-          offerCategory: 'Legumes',
-          offerTitle: 'Cenoura',
-          offerCity: 'Americana',
-          offerState: 'SP',
-          offerQuantity: '120',
-          offerTransportation: 'Sem transporte',
-          offerPrice: '55,00',
-          offerUnity: 'Caixa'
+          id: 3,
+          image: 'card-offer-carrot.png',
+          imageAlt: 'Imagem de um maço de cenouras na mão do agricultor.', 
+          category: 'LEGUMES',
+          title: 'Cenoura',
+          city: 'Americana',
+          state: 'SP',
+          quantity: '120',
+          transportation: 'Sem transporte',
+          price: '55,00',
+          unity: 'Caixa'
         },
         {
-          offerId: 4,
-          offerImage: '@/assets/card-offer-courgette.png',
-          offerImageAlt: 'Uma composição de abobrinhas dispostas em formato de pirâmide.', 
-          offerCategory: 'Legumes',
-          offerTitle: 'Abobrinha',
-          offerCity: 'Rio Claro',
-          offerState: 'SP',
-          offerQuantity: '80',
-          offerTransportation: 'Próprio',
-          offerPrice: '40,00',
-          offerUnity: 'Caixa'
+          id: 4,
+          image: 'card-offer-courgette.png',
+          imageAlt: 'Uma composição de abobrinhas dispostas em formato de pirâmide.', 
+          category: 'LEGUMES',
+          title: 'Abobrinha',
+          city: 'Rio Claro',
+          state: 'SP',
+          quantity: '80',
+          transportation: 'Próprio',
+          price: '40,00',
+          unity: 'Caixa'
+        },
+      ],
+      offersCat: [
+        {
+          id: 5,
+          image: 'card-offer-cabbage.png',
+          imageAlt: 'Quatro folhas de couve manteiga dispostas em um prato de madeira sobre uma mesa azul escura.', 
+          category: 'VERDURAS',
+          title: 'Couve Manteiga',
+          city: 'Jacareí',
+          state: 'SP',
+          quantity: '80',
+          transportation: 'Próprio',
+          price: '40,00',
+          unity: 'Caixa'
         },
         {
-          offerId: 5,
-          offerImage: '@/assets/card-offer-cabbage.png',
-          offerImageAlt: 'Quatro folhas de couve manteiga dispostas em um prato de madeira sobre uma mesa azul escura.', 
-          offerCategory: 'Verduras',
-          offerTitle: 'Couve Manteiga',
-          offerCity: 'Jacareí',
-          offerState: 'SP',
-          offerQuantity: '80',
-          offerTransportation: 'Próprio',
-          offerPrice: '40,00',
-          offerUnity: 'Caixa'
+          id: 6,
+          image: 'card-offer-lemon.png',
+          imageAlt: 'Uma composição de limões sicilianos amontoados com um destaque para um deles aberto pela metade, enaltecendo a qualidade da fruta.', 
+          category: 'FRUTAS',
+          title: 'Limão Siciliano',
+          city: 'Bragança Paulista',
+          state: 'SP',
+          quantity: '80',
+          transportation: 'Próprio',
+          price: '30,00',
+          unity: 'Saco'
         },
         {
-          offerId: 6,
-          offerImage: '@/assets/card-offer-lemon.png',
-          offerImageAlt: 'Uma composição de limões sicilianos amontoados com um destaque para um deles aberto pela metade, enaltecendo a qualidade da fruta.', 
-          offerCategory: 'Frutas',
-          offerTitle: 'Limão Siciliano',
-          offerCity: 'Bragança Paulista',
-          offerState: 'SP',
-          offerQuantity: '80',
-          offerTransportation: 'Próprio',
-          offerPrice: '30,00',
-          offerUnity: 'Saco'
+          id: 7,
+          image: 'card-offer-cayenne-pepper.png',
+          imageAlt: 'Uma bacia de pedra cheia de pimentas caienas que transbordou, e algumas delas estão espalhadas sobre uma mesa cinza.', 
+          category: 'TEMPEROS',
+          title: 'Pimenta Caiena',
+          city: 'Atibaia',
+          state: 'SP',
+          quantity: '160',
+          transportation: 'Próprio',
+          price: '40,00',
+          unity: 'Quilo'
         },
         {
-          offerId: 7,
-          offerImage: '@/assets/card-offer-cayenne-pepper.png',
-          offerImageAlt: 'Uma bacia de pedra cheia de pimentas caienas que transbordou, e algumas delas estão espalhadas sobre uma mesa cinza.', 
-          offerCategory: 'Temperos',
-          offerTitle: 'Pimenta Caiena',
-          offerCity: 'Atibaia',
-          offerState: 'SP',
-          offerQuantity: '160',
-          offerTransportation: 'Próprio',
-          offerPrice: '40,00',
-          offerUnity: 'Quilo'
-        },
-        {
-          offerId: 8,
-          offerImage: '@/assets/card-offer-pitaya.png',
-          offerImageAlt: 'Uma pitaya vermelha em um fundo rosa fosco envolvida por um tecido da mesma cor de fundo porém com um tom mais claro.', 
-          offerCategory: 'Frutas',
-          offerTitle: 'Pitaya Importada',
-          offerCity: 'Mogi das Cruzes',
-          offerState: 'SP',
-          offerQuantity: '150',
-          offerTransportation: 'Próprio',
-          offerPrice: '800,00',
-          offerUnity: 'Caixa'
+          id: 8,
+          image: 'card-offer-pitaya.png',
+          imageAlt: 'Uma pitaya vermelha em um fundo rosa fosco envolvida por um tecido da mesma cor de fundo porém com um tom mais claro.', 
+          category: 'FRUTAS',
+          title: 'Pitaya Importada',
+          city: 'Mogi das Cruzes',
+          state: 'SP',
+          quantity: '150',
+          transportation: 'Próprio',
+          price: '800,00',
+          unity: 'Caixa'
         },
       ]
     }
