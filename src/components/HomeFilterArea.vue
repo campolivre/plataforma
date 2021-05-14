@@ -103,7 +103,7 @@ export default {
 }
 
 .btn-main-filter {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #00A51C;
   border-radius: 8px;
   font-size: 1.5rem;
@@ -130,7 +130,7 @@ form {
 }
 
 form > div {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   width: 800px;
 }
 

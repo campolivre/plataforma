@@ -394,7 +394,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* Filtro Principal: Flex Container */
 .main-filter-page {
   display: flex;

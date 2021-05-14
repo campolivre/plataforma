@@ -138,11 +138,11 @@ export default {
 }
 
 .btn-love-it {
-  width: 35px;
-  padding: 6px 6px 6px 6px;
+  width: 3.5rem;
+  padding: 0.6rem;
   background-color: #FFFFFF;
   border: 1px solid #D2D2D2;
-  border-radius: 60px;
+  border-radius: 50%;
   text-align: center;
   font-size: 3rem;
   color: #363636;
