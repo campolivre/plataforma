@@ -155,7 +155,7 @@ export default {
 }
 
 .btn-account span {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
   padding: 0px 6px;
 }
@@ -244,7 +244,7 @@ export default {
 }
 
 .btn-show-login {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   background-color: #00A51C;
   border-radius: 8px;
   width: 100%;
