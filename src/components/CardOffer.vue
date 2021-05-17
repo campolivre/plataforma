@@ -7,7 +7,7 @@
       <p>{{ offer.city }} / {{ offer.state }}</p>
       <div class="card-offer-features"><i class="fas fa-box"></i><span>{{ offer.quantity }}</span><i class="fas fa-truck"></i><span>{{ offer.transportation }}</span></div>
       <div class="card-offer-price">
-        <p>R$ {{ offer.price }} / {{ offer.unity }}</p>
+        <p>{{ convertCurrencytoBRL(offer.price) }} / {{ offer.unity }}</p>
         <button @click="toggleLoveIt()" class="btn-love-it"><i v-bind:class=" { 'far fa-heart': !showLoveIt, 'fas fa-heart': showLoveIt, 'btn-love-it-red': showLoveIt }"></i></button>
       </div>
     </div>
@@ -15,6 +15,11 @@
 </template>
 
 <script>
+const formatCurrency = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+})
+
 export default {
   props: {
     offer: Object
@@ -27,6 +32,9 @@ export default {
   methods: {
     toggleLoveIt() {
       this.showLoveIt = !this.showLoveIt
+    },
+    convertCurrencytoBRL(number) {
+      return formatCurrency.format(number)
     }
   }
 }

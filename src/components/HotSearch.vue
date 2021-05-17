@@ -41,9 +41,10 @@ export default {
           title: 'Tomate Caqui',
           city: 'Rio Claro',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '80,00',
+          transportationPrice: 0.00,
+          price: 80.00,
           unity: 'Caixa'
         },
         {
@@ -54,9 +55,10 @@ export default {
           title: 'Pimentão Verde',
           city: 'Bauru',
           state: 'SP',
-          quantity: '180',
+          quantity: 180,
           transportation: 'Próprio',
-          price: '120,00',
+          transportationPrice: 0.00,
+          price: 120.00,
           unity: 'Caixa'
         },
         {
@@ -67,9 +69,10 @@ export default {
           title: 'Cenoura',
           city: 'Americana',
           state: 'SP',
-          quantity: '120',
-          transportation: 'Sem transporte',
-          price: '55,00',
+          quantity: 120,
+          transportation: 'Para retirar',
+          transportationPrice: 50.00,
+          price: 55.00,
           unity: 'Caixa'
         },
         {
@@ -80,9 +83,10 @@ export default {
           title: 'Abobrinha',
           city: 'Rio Claro',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Caixa'
         },
       ],
@@ -95,9 +99,10 @@ export default {
           title: 'Couve Manteiga',
           city: 'Jacareí',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Caixa'
         },
         {
@@ -108,9 +113,10 @@ export default {
           title: 'Limão Siciliano',
           city: 'Bragança Paulista',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '30,00',
+          transportationPrice: 0.00,
+          price: 30.00,
           unity: 'Saco'
         },
         {
@@ -121,9 +127,10 @@ export default {
           title: 'Pimenta Caiena',
           city: 'Atibaia',
           state: 'SP',
-          quantity: '160',
+          quantity: 160,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Quilo'
         },
         {
@@ -134,9 +141,10 @@ export default {
           title: 'Pitaya Importada',
           city: 'Mogi das Cruzes',
           state: 'SP',
-          quantity: '150',
+          quantity: 150,
           transportation: 'Próprio',
-          price: '800,00',
+          transportationPrice: 0.00,
+          price: 800.00,
           unity: 'Caixa'
         },
       ]

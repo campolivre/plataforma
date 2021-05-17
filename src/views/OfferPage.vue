@@ -43,7 +43,7 @@
         <div class="offer-page-main-title">
           <h1>Pimentão Verde</h1>
           <p>Endereço do produtor rural, 000, Cidade / UF<br />CEP 00000-000</p>
-          <p><i class="fas fa-clock"></i> Coletado há 2 dias <i class="fas fa-box"></i> 80 caixas em estoque</p>
+          <p><i class="fas fa-clock"></i> Coletado há 2 dias <i class="fas fa-box"></i> {{ offerProduct.quantity }} caixas em estoque</p>
         </div>
 
         <!-- ÁREA DAS TAGS -->
@@ -105,19 +105,40 @@
       <!-- ÁREA DA CALCULADORA -->
       <div class="offer-page-main-calculator-area">
         <div>
-          <p>Preço da Caixa</p><p class="paragraph-bold">R$ 80,00</p>
+          <p>Preço da Caixa</p><p class="paragraph-bold">{{ convertCurrencytoBRL(offerProduct.price) }}</p>
         </div>
         <div>
-          <p>Quantidade</p><div><button class="btn-control-cart">-</button><p class="paragraph-bold">1</p><button class="btn-control-cart">+</button></div>
+          <p>Quantidade</p>
+          <div>
+            <button
+              @click="subQuantity()"
+              class="btn-control-cart"
+              :class="{ 'btn-control-cart-disabled': inStockLow }"
+              :disabled="inStockLow"
+            >-</button>
+            <input
+              class="offer-imput-quantity"
+              type="text"
+              @keypress="isNumber($event)"
+              @change="updatequantityControl()"
+              v-model="quantityInput"
+            ></input>
+            <button
+              @click="addQuantity()"
+              class="btn-control-cart"
+              :class="{ 'btn-control-cart-disabled': inStockHigh }"
+              :disabled="inStockHigh"
+            >+</button>
+          </div>
         </div>
         <div>
-          <p>Frete</p><p class="paragraph-bold">grátis</p>
+          <p>Frete</p><p class="paragraph-bold">{{ convertCurrencytoBRL(offerProduct.transportationPrice) }}</p>
         </div>
         <div>
-          <p>Taxa de Serviço</p><p class="paragraph-bold">R$ 4,00</p>
+          <p>Taxa de Serviço</p><p class="paragraph-bold">{{ convertCurrencytoBRL(feePrice(offerProduct.price, quantityControl)) }}</p>
         </div>
         <div>
-          <p class="paragraph-bold">TOTAL</p><p class="paragraph-bold">R$ 84,00</p>
+          <p class="paragraph-bold">TOTAL</p><p class="paragraph-bold">{{ convertCurrencytoBRL(totalPrice) }}</p>
         </div>
         <div>
           <button class="btn-main-default btn-color-green">Adicionar ao Carrinho</button>
@@ -153,6 +174,11 @@ import NavBar from "@/components/NavBar.vue";
 import MainFooter from "@/components/MainFooter.vue";
 import CardOffer from "@/components/CardOffer.vue";
 
+const formatCurrency = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+})
+
 export default {
   components: {
     NavBar,
@@ -165,6 +191,25 @@ export default {
       videoGallery: false,
       mapGallery: false,
       showLoveIt: false,
+      feePriceCalc: null,
+      inStockLow: true,
+      inStockHigh: false,
+      quantityInput: 1,
+      quantityControl: 1,
+      offerProduct: {
+        id: 2,
+        image: 'card-offer-bell-pepper.png',
+        imageAlt: 'Imagem de um pimentão verde na mão de uma colhetora na fazenda.', 
+        category: 'LEGUMES',
+        title: 'Pimentão Verde',
+        city: 'Bauru',
+        state: 'SP',
+        quantity: 12,
+        transportation: 'Próprio',
+        transportationPrice: 50.00,
+        price: 120.00,
+        unity: 'Caixa'
+      },
       offers: [
         {
           id: 1,
@@ -174,9 +219,10 @@ export default {
           title: 'Tomate Caqui',
           city: 'Rio Claro',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '80,00',
+          transportationPrice: 0.00,
+          price: 80.00,
           unity: 'Caixa'
         },
         {
@@ -187,9 +233,10 @@ export default {
           title: 'Cenoura',
           city: 'Americana',
           state: 'SP',
-          quantity: '120',
-          transportation: 'Sem transporte',
-          price: '55,00',
+          quantity: 120,
+          transportation: 'Para retirar',
+          transportationPrice: 50.00,
+          price: 55.00,
           unity: 'Caixa'
         },
         {
@@ -200,9 +247,10 @@ export default {
           title: 'Abobrinha',
           city: 'Rio Claro',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Caixa'
         },
         {
@@ -213,9 +261,10 @@ export default {
           title: 'Couve Manteiga',
           city: 'Jacareí',
           state: 'SP',
-          quantity: '80',
+          quantity: 80,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Caixa'
         },
         {
@@ -226,9 +275,10 @@ export default {
           title: 'Pimenta Caiena',
           city: 'Atibaia',
           state: 'SP',
-          quantity: '160',
+          quantity: 160,
           transportation: 'Próprio',
-          price: '40,00',
+          transportationPrice: 0.00,
+          price: 40.00,
           unity: 'Quilo'
         },
       ]
@@ -246,6 +296,69 @@ export default {
     },
     toggleMapGallery() {
       this.photoGallery = false, this.videoGallery = false, this.mapGallery = true
+    },
+    convertCurrencytoBRL(number) {
+      return formatCurrency.format(number)
+    },
+    isNumber: function(evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault();;
+      } else {
+        return true;
+      }
+    },
+    subQuantity() {
+      if(this.quantityControl > 1) {
+        this.quantityControl--,
+        this.quantityInput = this.quantityControl,
+        this.inStockHigh = false
+      }
+      if (this.quantityControl === 1 || this.quantityControl < 1) {
+        this.quantityControl = 1,
+        this.quantityInput = this.quantityControl,
+        this.inStockLow = true
+      }
+    },
+    addQuantity() {
+      if(this.quantityControl < this.offerProduct.quantity) {
+        this.quantityControl++,
+        this.quantityInput = this.quantityControl
+        this.inStockLow = false
+      }
+      if (this.quantityControl == this.offerProduct.quantity || this.quantityControl > this.offerProduct.quantity) {
+        this.quantityControl = this.offerProduct.quantity,
+        this.quantityInput = this.quantityControl,
+        this.inStockHigh = true
+      }
+    },
+    updatequantityControl() {
+      if (this.quantityInput == 1 || this.quantityInput < 1) {
+        this.quantityInput = 1,
+        this.quantityControl = 1,
+        this.inStockLow = true,
+        this.inStockHigh = false
+      } else if (this.quantityInput == this.offerProduct.quantity || this.quantityInput > this.offerProduct.quantity) {
+        this.quantityInput = this.offerProduct.quantity,
+        this.quantityControl = this.offerProduct.quantity,
+        this.inStockHigh = true,
+        this.inStockLow = false
+      } else {
+        this.quantityInput = this.quantityInput,
+        this.quantityControl = this.quantityInput,
+        this.inStockHigh = false,
+        this.inStockLow = false
+      }
+    },
+    feePrice(price, quantity) {
+      return (price * quantity) * 0.05,
+      this.feePriceCalc = (price * quantity) * 0.05
+    }
+  },
+  computed: {
+    totalPrice() {
+      return (this.offerProduct.price * this.quantityControl) + this.offerProduct.transportationPrice + this.feePriceCalc
     }
   }
 }
@@ -545,6 +658,25 @@ export default {
   padding: 1.5rem 1.5rem 0rem 1.5rem;
 }
 
+.offer-imput-quantity {
+  padding: 0.2rem 0.6rem;
+  margin: 0rem 0.5rem;
+  width: 4rem;
+  font-size: 1.5rem;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  align-items: center;
+  outline: none;
+  background-color: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  color: #363636;
+}
+
+.offer-imput-quantity:focus {
+  border: 1px solid #00A51C;
+}
+
 .offer-page-main-calculator-area > div:nth-child(2) > div {
   display: flex;
   align-items: center;
@@ -705,6 +837,26 @@ export default {
   background-color: #F0F0F0;
   border: 1px solid #707070;
   color: #363636;
+}
+
+.btn-control-cart-disabled {
+  padding: 0.2rem 0.6rem;
+  font-size: 1.5rem;
+  cursor: default;
+  justify-content: center;
+  font-weight: 600;
+  align-items: center;
+  outline: none;
+  background-color: #FFFFFF;
+  border: 1px solid #D2D2D2;
+  color: #D2D2D2;
+}
+
+.btn-control-cart-disabled:hover {
+  outline: none;
+  background-color: #FFFFFF;
+  border: 1px solid #D2D2D2;
+  color: #D2D2D2;
 }
 
 
