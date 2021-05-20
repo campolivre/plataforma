@@ -1,43 +1,57 @@
 <template>
-  <div class="card-offer">
-    <img :src="require('../assets/' + offer.image)" :alt="offer.imageAlt" />
-    <div class="card-offer-info">
-      <p>{{ offer.category }}</p>
-      <p>{{ offer.title }}</p>
-      <p>{{ offer.city }} / {{ offer.state }}</p>
-      <div class="card-offer-features"><i class="fas fa-box"></i><span>{{ offer.quantity }}</span><i class="fas fa-truck"></i><span>{{ offer.transportation }}</span></div>
-      <div class="card-offer-price">
-        <p>{{ convertCurrencytoBRL(offer.price) }} / {{ offer.unity }}</p>
-        <button @click="toggleLoveIt()" class="btn-love-it"><i v-bind:class=" { 'far fa-heart': !showLoveIt, 'fas fa-heart': showLoveIt, 'btn-love-it-red': showLoveIt }"></i></button>
+  <router-link class="link-card-offer" to="/paginaOferta">
+    <div class="card-offer">
+      <img :src="require('../assets/' + offer.image)" :alt="offer.imageAlt" />
+      <div class="card-offer-info">
+        <p>{{ offer.category }}</p>
+        <p>{{ offer.title }}</p>
+        <p>{{ offer.city }} / {{ offer.state }}</p>
+        <div class="card-offer-features">
+          <i class="fas fa-box"></i><span>{{ offer.quantity }}</span
+          ><i class="fas fa-truck"></i><span>{{ offer.transportation }}</span>
+        </div>
+        <div class="card-offer-price">
+          <p>{{ convertCurrencytoBRL(offer.price) }} / {{ offer.unity }}</p>
+          <button @click="toggleLoveIt()" class="btn-love-it">
+            <i
+              v-bind:class="{
+                'far fa-heart': !showLoveIt,
+                'fas fa-heart': showLoveIt,
+                'btn-love-it-red': showLoveIt,
+              }"
+            ></i>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
-const formatCurrency = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL'
-})
+const formatCurrency = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
 
 export default {
   props: {
-    offer: Object
+    offer: Object,
   },
   data() {
     return {
-      showLoveIt: false
-    }
+      showLoveIt: false,
+    };
   },
   methods: {
     toggleLoveIt() {
-      this.showLoveIt = !this.showLoveIt
+      event.preventDefault();
+      this.showLoveIt = !this.showLoveIt;
     },
     convertCurrencytoBRL(number) {
-      return formatCurrency.format(number)
-    }
-  }
-}
+      return formatCurrency.format(number);
+    },
+  },
+};
 </script>
 
 <style>
@@ -49,16 +63,28 @@ export default {
   justify-content: space-between;
 }
 
+.link-card-offer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 23%;
+  max-height: 300px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* Card de Ofertas: Flex Container */
 .card-offer {
   display: flex;
   flex-direction: column;
   height: 100%;
-  box-shadow: 1px 1px 6px #D2D2D2;
-  background-color: #FFFFFF;
+  box-shadow: 1px 1px 6px #d2d2d2;
+  background-color: #ffffff;
   border-radius: 8px;
-  border: 1px solid #D2D2D2;
-  width: 23%;
+  border: 1px solid #d2d2d2;
+  width: 100%;
   max-height: 300px;
   cursor: pointer;
 }
@@ -86,27 +112,28 @@ export default {
   align-items: flex-start;
   width: calc(100% - 30px);
   padding: 15px 15px;
+  color: #363636;
 }
 
 .card-offer-info p {
   margin: 0;
 }
 
-.card-offer-info p:nth-child(1){
+.card-offer-info p:nth-child(1) {
   width: calc(100% - 16px);
   text-align: left;
   font-size: 1rem;
   margin-bottom: 8px;
 }
 
-.card-offer-info p:nth-child(2){
+.card-offer-info p:nth-child(2) {
   width: calc(100% - 16px);
   text-align: left;
   font-size: 1.4rem;
   font-weight: 600;
 }
 
-.card-offer-info p:nth-child(3){
+.card-offer-info p:nth-child(3) {
   width: calc(100% - 16px);
   text-align: left;
   font-size: 1.2rem;
@@ -142,14 +169,14 @@ export default {
   padding: 0;
   font-size: 1.5rem !important;
   font-weight: 600;
-  color: #00A51C;
+  color: #00a51c;
 }
 
 .btn-love-it {
   width: 3.5rem;
   padding: 0.6rem;
-  background-color: #FFFFFF;
-  border: 1px solid #D2D2D2;
+  background-color: #ffffff;
+  border: 1px solid #d2d2d2;
   border-radius: 50%;
   text-align: center;
   font-size: 3rem;
@@ -163,16 +190,16 @@ export default {
 }
 
 .btn-love-it:hover {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   transform: scale(1.05);
 }
 
 .far .fa-heart {
-  color: #707070;  
+  color: #707070;
 }
 
 .btn-love-it-red {
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .hot-filter-button {
@@ -188,32 +215,44 @@ export default {
     display: flex;
     width: 100%;
     min-height: 35%;
-    margin: 20px 0px;
+    margin: 20px 0px 10px;
     justify-content: space-between;
   }
 
-  .card-offer {
-    box-shadow: 1px 1px 6px #D2D2D2;
+  .link-card-offer {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 8px;
-    border: 1px solid #D2D2D2;
     width: 23%;
+    max-height: 300px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .card-offer {
+    box-shadow: 1px 1px 6px #d2d2d2;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d2d2d2;
+    width: 100%;
     max-height: 300px;
     cursor: pointer;
   }
 
-  .card-offer-info p:nth-child(1){
+  .card-offer-info p:nth-child(1) {
     font-size: 1.1rem;
     margin-bottom: 8px;
   }
 
-  .card-offer-info p:nth-child(2){
+  .card-offer-info p:nth-child(2) {
     font-size: 1.4rem;
     font-weight: 600;
   }
 
-  .card-offer-info p:nth-child(3){
+  .card-offer-info p:nth-child(3) {
     font-size: 1.2rem;
     margin-bottom: 12px;
   }
@@ -244,11 +283,23 @@ export default {
     flex-direction: column;
   }
 
+  .link-card-offer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 340px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
   .card-offer {
     width: 100%;
     height: 100%;
     min-height: 340px;
-    margin-bottom: 25px;
+    padding-bottom: 10px;
   }
 
   .card-offer:last-child {
@@ -264,17 +315,17 @@ export default {
     padding: 15px 15px;
   }
 
-  .card-offer-info p:nth-child(1){
+  .card-offer-info p:nth-child(1) {
     font-size: 1.2rem;
     margin-bottom: 8px;
   }
 
-  .card-offer-info p:nth-child(2){
+  .card-offer-info p:nth-child(2) {
     font-size: 1.6rem;
     font-weight: 600;
   }
 
-  .card-offer-info p:nth-child(3){
+  .card-offer-info p:nth-child(3) {
     font-size: 1.4rem;
     margin-bottom: 12px;
   }
