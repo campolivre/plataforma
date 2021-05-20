@@ -1007,7 +1007,7 @@ export default {
 
   .offer-page-similar-offers > div > * {
     flex-basis: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 3.5rem;
   }
 
   .offer-page-similar-offers > div > *:last-child {

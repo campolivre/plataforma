@@ -1,10 +1,17 @@
 <template>
   <div>
-
     <!-- ÁREA DOS PARÂMETROS DE FILTRO -->
-    <div v-bind:class="{ 'filter-fade-in': showFilterBox, 'filter-fade-out': !showFilterBox }" class="main-filter-params-modal">
+    <div
+      v-bind:class="{
+        'filter-fade-in': showFilterBox,
+        'filter-fade-out': !showFilterBox,
+      }"
+      class="main-filter-params-modal"
+    >
       <div class="main-filter-params-box">
-        <div><i @click="toggleFilterBox()" class="fas fa-times"></i> Filtros</div>
+        <div>
+          <i @click="toggleFilterBox()" class="fas fa-times"></i> Filtros
+        </div>
         <div>
           <div>
             <div>Preço</div>
@@ -14,19 +21,25 @@
                 :class="listButtonPrice.buttonPriceStyle"
                 :key="index"
                 @click="activateButtonPrice(index)"
-              >{{ listButtonPrice.buttonPriceText }}</button>
+              >
+                {{ listButtonPrice.buttonPriceText }}
+              </button>
             </div>
           </div>
           <div>
             <div>Transporte</div>
             <div>
               <button
-                v-for="(listButtonTransportation, index) in listButtonsTransportation"
+                v-for="(
+                  listButtonTransportation, index
+                ) in listButtonsTransportation"
                 :class="listButtonTransportation.buttonTransportationStyle"
                 :key="index"
                 @click="activateButtonTransportation(index)"
-              >{{ listButtonTransportation.buttonTransportationText }}</button>
-            </div>  
+              >
+                {{ listButtonTransportation.buttonTransportationText }}
+              </button>
+            </div>
           </div>
           <div>
             <div>Produto Orgânico?</div>
@@ -36,7 +49,9 @@
                 :class="listButtonOrganic.buttonOrganicStyle"
                 :key="index"
                 @click="activateButtonOrganic(index)"
-              >{{ listButtonOrganic.buttonOrganicText }}</button>
+              >
+                {{ listButtonOrganic.buttonOrganicText }}
+              </button>
             </div>
           </div>
           <div>
@@ -47,7 +62,9 @@
                 :class="listButtonTransformed.buttonTransformedStyle"
                 :key="index"
                 @click="activateButtonTransformed(index)"
-              >{{ listButtonTransformed.buttonTransformedText }}</button>
+              >
+                {{ listButtonTransformed.buttonTransformedText }}
+              </button>
             </div>
           </div>
           <div>
@@ -58,7 +75,9 @@
                 :class="listButtonMeasure.buttonMeasureStyle"
                 :key="index"
                 @click="activateButtonMeasure(index)"
-              >{{ listButtonMeasure.buttonMeasureText }}</button>
+              >
+                {{ listButtonMeasure.buttonMeasureText }}
+              </button>
             </div>
           </div>
           <div>
@@ -69,26 +88,43 @@
                 :class="listButtonVolume.buttonVolumeStyle"
                 :key="index"
                 @click="activateButtonVolume(index)"
-              >{{ listButtonVolume.buttonVolumeText }}</button>
+              >
+                {{ listButtonVolume.buttonVolumeText }}
+              </button>
             </div>
           </div>
           <div>
             <div>Disponibilidade</div>
             <div>
               <button
-                v-for="(listButtonAvailability, index) in listButtonsAvailability"
+                v-for="(
+                  listButtonAvailability, index
+                ) in listButtonsAvailability"
                 :class="listButtonAvailability.buttonAvailabilityStyle"
                 :key="index"
                 @click="activateButtonAvailability(index)"
-              >{{ listButtonAvailability.buttonAvailabilityText }}</button>
+              >
+                {{ listButtonAvailability.buttonAvailabilityText }}
+              </button>
             </div>
           </div>
         </div>
         <div>
-          <div><button class="btn-filter-box btn-color-white">Limpar Filtros</button></div>
-          <div><button @click="toggleFilterBox()" class="btn-filter-box btn-color-green">Aplicar Filtros</button></div>
+          <div>
+            <button class="btn-filter-box btn-color-white">
+              Limpar Filtros
+            </button>
+          </div>
+          <div>
+            <button
+              @click="toggleFilterBox()"
+              class="btn-filter-box btn-color-green"
+            >
+              Aplicar Filtros
+            </button>
+          </div>
         </div>
-      </div>      
+      </div>
     </div>
 
     <div class="main-filter-page">
@@ -99,20 +135,36 @@
         <div class="filter-content">
           <!-- ÁREA DO FILTRO -->
           <div class="filter-content-header">
-            <p>Ofertas de legumes em <br /><span class="city-highlight">Rio Claro / SP</span></p>
+            <p>
+              Ofertas de legumes em <br /><span class="city-highlight"
+                >Rio Claro / SP</span
+              >
+            </p>
             <div>
-              <button @click="toggleFilterBox()" class="btn-filter"><i class="fas fa-sliders-h"></i> Filtrar</button>
+              <button @click="toggleFilterBox()" class="btn-filter">
+                <i class="fas fa-sliders-h"></i> Filtrar
+              </button>
             </div>
           </div>
 
           <!-- ÁREA DO BREADCRUMB -->
-          <span class="filter-breadcrumbs"><router-link to="#">Início</router-link> <span class="filter-breadcrumbs-separator">></span> <router-link to="#">Rio Claro / SP</router-link></span>
+          <span class="filter-breadcrumbs"
+            ><router-link to="#">Início</router-link>
+            <span class="filter-breadcrumbs-separator">></span>
+            <router-link to="#">Rio Claro / SP</router-link></span
+          >
 
           <!-- ÁREA DOS RESULTADOS E ORDENAÇÃO -->
           <div class="filter-content-ordering">
             <p>{{ offers.length }} ofertas encontradas com esses parâmetros</p>
             <div class="group-filter-price">
-              <select class="form-filter-price" name="slcPrice" id="slcPrice" form="filterOffers" placeholder="Escolha o preço">
+              <select
+                class="form-filter-price"
+                name="slcPrice"
+                id="slcPrice"
+                form="filterOffers"
+                placeholder="Escolha o preço"
+              >
                 <option value="preco-1">Mais relevantes</option>
                 <option value="preco-1">Mais recentes</option>
                 <option value="preco-2">Menor custo total</option>
@@ -127,32 +179,44 @@
               v-for="(tag, index) in tags"
               v-show="tag.tagShow"
               :key="index"
-              class="filter-content-tags">
+              class="filter-content-tags"
+            >
               <span>{{ tag.tagText }}</span>
               <span @click="clearTag(index)">X</span>
             </div>
           </div>
 
-
           <!-- ÁREA DOS CARDS DE OFERTAS -->
           <div class="filter-content-offers-area">
             <div class="filter-content-offers">
-              <CardOffer v-for="offer in offers" :key="offer.id" :offer="offer" />
+              <CardOffer
+                v-for="offer in offers"
+                :key="offer.id"
+                :offer="offer"
+              />
             </div>
 
             <!-- ÁREA DA MENSAGEM "NÃO ENCONTROU O QUE QUERIA?" -->
-            <div class="filter-content-offers-message" v-bind:style="{ 'margin-top': marginFooter }">
+            <div
+              class="filter-content-offers-message"
+              v-bind:style="{ 'margin-top': marginFooter }"
+            >
               <h2>Não encontrou o que queria? :/</h2>
-              <p>Não se preocupe! Todos os dias novas ofertas são cadastradas no sistema e você pode receber novas ofertas por email.</p>
+              <p>
+                Não se preocupe! Todos os dias novas ofertas são cadastradas no
+                sistema e você pode receber novas ofertas por email.
+              </p>
               <div>
                 <button class="btn-filter-box btn-color-green">Avise-me</button>
               </div>
             </div>
-            
+
             <!-- ÁREA DA MENSAGEM "NÃO EXISTEM OFERTAS PARA APRESENTAR" -->
             <div class="filter-content-no-offers">
               <div><i class="fas fa-search"></i></div>
-              <p>Ops! Nenhuma oferta encontrada com esses parâmetros de filtro.</p>
+              <p>
+                Ops! Nenhuma oferta encontrada com esses parâmetros de filtro.
+              </p>
             </div>
 
             <div>
@@ -160,10 +224,16 @@
               <MainFooter />
             </div>
           </div>
-
         </div>
         <div class="filter-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29404.620921447073!2d-47.085413731897795!3d-22.892056526055768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c61de74b6325%3A0x17e53a6a2178c22a!2sCampinas%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1620311906930!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29404.620921447073!2d-47.085413731897795!3d-22.892056526055768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c61de74b6325%3A0x17e53a6a2178c22a!2sCampinas%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1620311906930!5m2!1spt-BR!2sbr"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -176,230 +246,347 @@ import MainFooter from "@/components/MainFooter.vue";
 import CardOffer from "@/components/CardOffer.vue";
 
 export default {
-  data () {
+  data() {
     return {
       offers: [
         {
           id: 1,
-          image: 'card-offer-tomato.png',
-          imageAlt: 'Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas.', 
-          category: 'LEGUMES',
-          title: 'Tomate Caqui',
-          city: 'Rio Claro',
-          state: 'SP',
+          image: "card-offer-tomato.png",
+          imageAlt:
+            "Imagem de tomates vermelhos na árvore de tomateiro de uma fazenda, prontas para serem colhidas.",
+          category: "LEGUMES",
+          title: "Tomate Caqui",
+          city: "Rio Claro",
+          state: "SP",
           quantity: 80,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 80.00,
-          unity: 'Caixa'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 80.0,
+          unity: "Caixa",
         },
         {
           id: 2,
-          image: 'card-offer-bell-pepper.png',
-          imageAlt: 'Imagem de um pimentão verde na mão de uma colhetora na fazenda.', 
-          category: 'LEGUMES',
-          title: 'Pimentão Verde',
-          city: 'Bauru',
-          state: 'SP',
+          image: "card-offer-bell-pepper.png",
+          imageAlt:
+            "Imagem de um pimentão verde na mão de uma colhetora na fazenda.",
+          category: "LEGUMES",
+          title: "Pimentão Verde",
+          city: "Bauru",
+          state: "SP",
           quantity: 180,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 120.00,
-          unity: 'Caixa'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 120.0,
+          unity: "Caixa",
         },
         {
           id: 3,
-          image: 'card-offer-carrot.png',
-          imageAlt: 'Imagem de um maço de cenouras na mão do agricultor.', 
-          category: 'LEGUMES',
-          title: 'Cenoura',
-          city: 'Americana',
-          state: 'SP',
+          image: "card-offer-carrot.png",
+          imageAlt: "Imagem de um maço de cenouras na mão do agricultor.",
+          category: "LEGUMES",
+          title: "Cenoura",
+          city: "Americana",
+          state: "SP",
           quantity: 120,
-          transportation: 'Para retirar',
-          transportationPrice: 0.00,
-          price: 55.00,
-          unity: 'Caixa'
+          transportation: "Para retirar",
+          transportationPrice: 0.0,
+          price: 55.0,
+          unity: "Caixa",
         },
         {
           id: 4,
-          image: 'card-offer-courgette.png',
-          imageAlt: 'Uma composição de abobrinhas dispostas em formato de pirâmide.', 
-          category: 'LEGUMES',
-          title: 'Abobrinha',
-          city: 'Rio Claro',
-          state: 'SP',
+          image: "card-offer-courgette.png",
+          imageAlt:
+            "Uma composição de abobrinhas dispostas em formato de pirâmide.",
+          category: "LEGUMES",
+          title: "Abobrinha",
+          city: "Rio Claro",
+          state: "SP",
           quantity: 80,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 40.00,
-          unity: 'Caixa'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 40.0,
+          unity: "Caixa",
         },
         {
           id: 5,
-          image: 'card-offer-cabbage.png',
-          imageAlt: 'Quatro folhas de couve manteiga dispostas em um prato de madeira sobre uma mesa azul escura.', 
-          category: 'VERDURAS',
-          title: 'Couve Manteiga',
-          city: 'Jacareí',
-          state: 'SP',
+          image: "card-offer-cabbage.png",
+          imageAlt:
+            "Quatro folhas de couve manteiga dispostas em um prato de madeira sobre uma mesa azul escura.",
+          category: "VERDURAS",
+          title: "Couve Manteiga",
+          city: "Jacareí",
+          state: "SP",
           quantity: 80,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 40.00,
-          unity: 'Caixa'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 40.0,
+          unity: "Caixa",
         },
         {
           id: 6,
-          image: 'card-offer-lemon.png',
-          imageAlt: 'Uma composição de limões sicilianos amontoados com um destaque para um deles aberto pela metade, enaltecendo a qualidade da fruta.', 
-          category: 'FRUTAS',
-          title: 'Limão Siciliano',
-          city: 'Bragança Paulista',
-          state: 'SP',
+          image: "card-offer-lemon.png",
+          imageAlt:
+            "Uma composição de limões sicilianos amontoados com um destaque para um deles aberto pela metade, enaltecendo a qualidade da fruta.",
+          category: "FRUTAS",
+          title: "Limão Siciliano",
+          city: "Bragança Paulista",
+          state: "SP",
           quantity: 80,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 30.00,
-          unity: 'Saco'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 30.0,
+          unity: "Saco",
         },
         {
           id: 7,
-          image: 'card-offer-cayenne-pepper.png',
-          imageAlt: 'Uma bacia de pedra cheia de pimentas caienas que transbordou, e algumas delas estão espalhadas sobre uma mesa cinza.', 
-          category: 'TEMPEROS',
-          title: 'Pimenta Caiena',
-          city: 'Atibaia',
-          state: 'SP',
+          image: "card-offer-cayenne-pepper.png",
+          imageAlt:
+            "Uma bacia de pedra cheia de pimentas caienas que transbordou, e algumas delas estão espalhadas sobre uma mesa cinza.",
+          category: "TEMPEROS",
+          title: "Pimenta Caiena",
+          city: "Atibaia",
+          state: "SP",
           quantity: 160,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 40.00,
-          unity: 'Quilo'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 40.0,
+          unity: "Quilo",
         },
         {
           id: 8,
-          image: 'card-offer-pitaya.png',
-          imageAlt: 'Uma pitaya vermelha em um fundo rosa fosco envolvida por um tecido da mesma cor de fundo porém com um tom mais claro.', 
-          category: 'FRUTAS',
-          title: 'Pitaya Importada',
-          city: 'Mogi das Cruzes',
-          state: 'SP',
+          image: "card-offer-pitaya.png",
+          imageAlt:
+            "Uma pitaya vermelha em um fundo rosa fosco envolvida por um tecido da mesma cor de fundo porém com um tom mais claro.",
+          category: "FRUTAS",
+          title: "Pitaya Importada",
+          city: "Mogi das Cruzes",
+          state: "SP",
           quantity: 150,
-          transportation: 'Próprio',
-          transportationPrice: 0.00,
-          price: 800.00,
-          unity: 'Caixa'
+          transportation: "Próprio",
+          transportationPrice: 0.0,
+          price: 800.0,
+          unity: "Caixa",
         },
       ],
       listButtonsPrice: [
-        { buttonPriceId: 1, buttonPriceText: '$', buttonPriceStyle: 'btn-filter-box btn-color-white' },
-        { buttonPriceId: 2, buttonPriceText: '$$', buttonPriceStyle: 'btn-filter-box btn-color-white' },
-        { buttonPriceId: 3, buttonPriceText: '$$$', buttonPriceStyle: 'btn-filter-box btn-color-white' },
-        { buttonPriceId: 4, buttonPriceText: '$$$$', buttonPriceStyle: 'btn-filter-box btn-color-white' },
-        { buttonPriceId: 5, buttonPriceText: '$$$$$', buttonPriceStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonPriceId: 1,
+          buttonPriceText: "$",
+          buttonPriceStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonPriceId: 2,
+          buttonPriceText: "$$",
+          buttonPriceStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonPriceId: 3,
+          buttonPriceText: "$$$",
+          buttonPriceStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonPriceId: 4,
+          buttonPriceText: "$$$$",
+          buttonPriceStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonPriceId: 5,
+          buttonPriceText: "$$$$$",
+          buttonPriceStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsTransportation: [
-        { buttonTransportationId: 1, buttonTransportationText: 'Próprio', buttonTransportationStyle: 'btn-filter-box btn-color-white' },
-        { buttonTransportationId: 2, buttonTransportationText: 'Indiferente', buttonTransportationStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonTransportationId: 1,
+          buttonTransportationText: "Próprio",
+          buttonTransportationStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonTransportationId: 2,
+          buttonTransportationText: "Indiferente",
+          buttonTransportationStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsOrganic: [
-        { buttonOrganicId: 1, buttonOrganicText: 'Sim', buttonOrganicStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonOrganicId: 1,
+          buttonOrganicText: "Sim",
+          buttonOrganicStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsTransformed: [
-        { buttonTransformedId: 1, buttonTransformedText: 'Sim', buttonTransformedStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonTransformedId: 1,
+          buttonTransformedText: "Sim",
+          buttonTransformedStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsMeasure: [
-        { buttonMeasureId: 1, buttonMeasureText: 'Caixas', buttonMeasureStyle: 'btn-filter-box btn-color-white' },
-        { buttonMeasureId: 1, buttonMeasureText: 'Sacos', buttonMeasureStyle: 'btn-filter-box btn-color-white' },
-        { buttonMeasureId: 1, buttonMeasureText: 'Quilos', buttonMeasureStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonMeasureId: 1,
+          buttonMeasureText: "Caixas",
+          buttonMeasureStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonMeasureId: 1,
+          buttonMeasureText: "Sacos",
+          buttonMeasureStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonMeasureId: 1,
+          buttonMeasureText: "Quilos",
+          buttonMeasureStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsVolume: [
-        { buttonVolumeId: 1, buttonVolumeText: '10+', buttonVolumeStyle: 'btn-filter-box btn-color-white' },
-        { buttonVolumeId: 1, buttonVolumeText: '25+', buttonVolumeStyle: 'btn-filter-box btn-color-white' },
-        { buttonVolumeId: 1, buttonVolumeText: '50+', buttonVolumeStyle: 'btn-filter-box btn-color-white' },
-        { buttonVolumeId: 1, buttonVolumeText: '100+', buttonVolumeStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonVolumeId: 1,
+          buttonVolumeText: "10+",
+          buttonVolumeStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonVolumeId: 1,
+          buttonVolumeText: "25+",
+          buttonVolumeStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonVolumeId: 1,
+          buttonVolumeText: "50+",
+          buttonVolumeStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonVolumeId: 1,
+          buttonVolumeText: "100+",
+          buttonVolumeStyle: "btn-filter-box btn-color-white",
+        },
       ],
       listButtonsAvailability: [
-        { buttonAvailabilityId: 1, buttonAvailabilityText: 'Imediata', buttonAvailabilityStyle: 'btn-filter-box btn-color-white' },
-        { buttonAvailabilityId: 1, buttonAvailabilityText: 'Até 15 dias', buttonAvailabilityStyle: 'btn-filter-box btn-color-white' },
-        { buttonAvailabilityId: 1, buttonAvailabilityText: 'Mais de 15 dias', buttonAvailabilityStyle: 'btn-filter-box btn-color-white' },
+        {
+          buttonAvailabilityId: 1,
+          buttonAvailabilityText: "Imediata",
+          buttonAvailabilityStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonAvailabilityId: 1,
+          buttonAvailabilityText: "Até 15 dias",
+          buttonAvailabilityStyle: "btn-filter-box btn-color-white",
+        },
+        {
+          buttonAvailabilityId: 1,
+          buttonAvailabilityText: "Mais de 15 dias",
+          buttonAvailabilityStyle: "btn-filter-box btn-color-white",
+        },
       ],
       tags: [
-        { tagId: 1, tagText: 'caixas', tagShow: true },
-        { tagId: 2, tagText: '$$$', tagShow: true },
-        { tagId: 3, tagText: 'imediata', tagShow: true },
+        { tagId: 1, tagText: "caixas", tagShow: true },
+        { tagId: 2, tagText: "$$$", tagShow: true },
+        { tagId: 3, tagText: "imediata", tagShow: true },
       ],
       showFilterBox: false,
       countShowFilterBox: 0,
-      vizFilterBox: 'hidden',
-      marginFooter: 36*3+'px'
-    }
+      vizFilterBox: "hidden",
+      marginFooter: 36 * 3 + "px",
+    };
   },
   methods: {
     toggleFilterBox() {
-      this.showFilterBox = !this.showFilterBox,
-      this.countShowFilterBox++
+      (this.showFilterBox = !this.showFilterBox), this.countShowFilterBox++;
     },
-    activateButtonPrice(index){
-      if(this.listButtonsPrice[index].buttonPriceStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsPrice[index].buttonPriceStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonPrice(index) {
+      if (
+        this.listButtonsPrice[index].buttonPriceStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsPrice[index].buttonPriceStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsPrice[index].buttonPriceStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsPrice[index].buttonPriceStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonTransportation(index){
-      if(this.listButtonsTransportation[index].buttonTransportationStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsTransportation[index].buttonTransportationStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonTransportation(index) {
+      if (
+        this.listButtonsTransportation[index].buttonTransportationStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsTransportation[index].buttonTransportationStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsTransportation[index].buttonTransportationStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsTransportation[index].buttonTransportationStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonOrganic(index){
-      if(this.listButtonsOrganic[index].buttonOrganicStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsOrganic[index].buttonOrganicStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonOrganic(index) {
+      if (
+        this.listButtonsOrganic[index].buttonOrganicStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsOrganic[index].buttonOrganicStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsOrganic[index].buttonOrganicStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsOrganic[index].buttonOrganicStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonTransformed(index){
-      if(this.listButtonsTransformed[index].buttonTransformedStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsTransformed[index].buttonTransformedStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonTransformed(index) {
+      if (
+        this.listButtonsTransformed[index].buttonTransformedStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsTransformed[index].buttonTransformedStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsTransformed[index].buttonTransformedStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsTransformed[index].buttonTransformedStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonMeasure(index){
-      if(this.listButtonsMeasure[index].buttonMeasureStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsMeasure[index].buttonMeasureStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonMeasure(index) {
+      if (
+        this.listButtonsMeasure[index].buttonMeasureStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsMeasure[index].buttonMeasureStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsMeasure[index].buttonMeasureStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsMeasure[index].buttonMeasureStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonVolume(index){
-      if(this.listButtonsVolume[index].buttonVolumeStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsVolume[index].buttonVolumeStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonVolume(index) {
+      if (
+        this.listButtonsVolume[index].buttonVolumeStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsVolume[index].buttonVolumeStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsVolume[index].buttonVolumeStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsVolume[index].buttonVolumeStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    activateButtonAvailability(index){
-      if(this.listButtonsAvailability[index].buttonAvailabilityStyle == 'btn-filter-box btn-color-white'){
-        this.listButtonsAvailability[index].buttonAvailabilityStyle = 'btn-filter-box btn-color-white-active'
+    activateButtonAvailability(index) {
+      if (
+        this.listButtonsAvailability[index].buttonAvailabilityStyle ==
+        "btn-filter-box btn-color-white"
+      ) {
+        this.listButtonsAvailability[index].buttonAvailabilityStyle =
+          "btn-filter-box btn-color-white-active";
       } else {
-        this.listButtonsAvailability[index].buttonAvailabilityStyle = 'btn-filter-box btn-color-white'
+        this.listButtonsAvailability[index].buttonAvailabilityStyle =
+          "btn-filter-box btn-color-white";
       }
     },
-    clearTag(index){
-      this.tags[index].tagShow = false
+    clearTag(index) {
+      this.tags[index].tagShow = false;
     },
   },
   components: {
     NavBar,
     MainFooter,
-    CardOffer
-  }
-}
+    CardOffer,
+  },
+};
 </script>
 
 <style scoped>
@@ -432,7 +619,7 @@ export default {
   max-height: calc(100vh - 60px);
 }
 
-.filter-content span:nth-child(4){
+.filter-content span:nth-child(4) {
   flex: 1;
 }
 
@@ -443,7 +630,7 @@ export default {
   padding: 12px 20px;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 0.5px solid #D2D2D2;
+  border-bottom: 0.5px solid #d2d2d2;
 }
 
 .filter-content-header > p {
@@ -470,7 +657,7 @@ export default {
 
 .btn-filter {
   width: 100px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 10px;
   border: 1px solid #707070;
   border-radius: 8px;
@@ -485,9 +672,9 @@ export default {
 }
 
 .btn-filter:hover {
-  background-color: #FCAB10;
-  border: 1px solid #FCAB10;
-  color: #FFFFFF;
+  background-color: #fcab10;
+  border: 1px solid #fcab10;
+  color: #ffffff;
 }
 
 .btn-filter i {
@@ -511,7 +698,7 @@ export default {
 
 .filter-breadcrumbs a:hover {
   text-decoration: underline;
-  color: #00A51C;
+  color: #00a51c;
 }
 
 .filter-breadcrumbs-separator {
@@ -557,7 +744,7 @@ export default {
 .filter-content-tags {
   display: flex;
   align-items: center;
-  background-color: #00A51C;
+  background-color: #00a51c;
   padding: 0px 8px;
   border-radius: 6px;
   margin-right: 10px;
@@ -568,7 +755,7 @@ export default {
   font-size: 1.3rem;
   font-weight: 600;
   padding: 6px 6px 6px 0px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .filter-content-tags span:nth-child(2) {
@@ -576,7 +763,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   padding: 3px 6px 4px 6px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
@@ -624,7 +811,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 40px 26% 40px;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
 }
 
 /* Filtro Área da Mensagem: Flex I */
@@ -642,7 +829,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   padding: 40px 26% 40px;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   flex: 1;
   display: none;
 }
@@ -650,7 +837,7 @@ export default {
 /* Filtro Mensagem "Sem Resultados": Flex I */
 .filter-content-no-offers i {
   font-size: 4rem;
-  background-color: #D2D2D2;
+  background-color: #d2d2d2;
   padding: 30px;
   margin-bottom: 20px;
   border-radius: 50%;
@@ -685,7 +872,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #FFFFFF;
+  background: #ffffff;
   width: 50%;
   height: 90vh;
   border-radius: 20px;
@@ -693,13 +880,13 @@ export default {
 
 .main-filter-params-box > div:nth-child(1) {
   display: flex;
-  background-color: #00A51C;
+  background-color: #00a51c;
   min-height: 60px;
   border-radius: 20px 20px 0 0;
   align-items: center;
   font-size: 2.2rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px 26px;
 }
 
@@ -713,7 +900,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: calc(100% - 52px);
-  height: 100%; 
+  height: 100%;
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
@@ -730,7 +917,7 @@ export default {
   width: calc(100% - 40px);
   height: 40px;
   padding: 26px 20px 26px 20px;
-  border-bottom: 0.5px solid #D2D2D2;
+  border-bottom: 0.5px solid #d2d2d2;
 }
 
 .main-filter-params-box > div:nth-child(2) > *:first-child {
@@ -754,8 +941,8 @@ export default {
   min-height: 80px;
   border-radius: 0 0 20px 20px;
   padding: 0px 26px;
-  border-top: 0.5px solid #D2D2D2;
-  background-color: #FBFBFB;
+  border-top: 0.5px solid #d2d2d2;
+  background-color: #fbfbfb;
 }
 
 .btn-filter-box {
@@ -770,39 +957,39 @@ export default {
 }
 
 .btn-color-white {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid #707070;
   color: #363636;
 }
 
 .btn-color-white:hover {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border: 1px solid #707070;
   color: #363636;
 }
 
 .btn-color-white-active {
   background-color: rgba(0, 165, 28, 0.15);
-  border: 1px solid rgba(0, 165, 28, 0.35);;
-  color: #00A51C;
+  border: 1px solid rgba(0, 165, 28, 0.35);
+  color: #00a51c;
 }
 
 .btn-color-white-active:hover {
   background-color: rgba(0, 165, 28, 0.25);
-  border: 1px solid rgba(0, 165, 28, 0.45);;
-  color: #00A51C;
+  border: 1px solid rgba(0, 165, 28, 0.45);
+  color: #00a51c;
 }
 
 .btn-color-green {
-  background-color: #00A51C;
-  border: 1px solid #00A51C;
-  color: #FFFFFF;
+  background-color: #00a51c;
+  border: 1px solid #00a51c;
+  color: #ffffff;
 }
 
 .btn-color-green:hover {
-  background-color: #FCAB10;
-  border: 1px solid #FCAB10;
-  color: #FFFFFF;
+  background-color: #fcab10;
+  border: 1px solid #fcab10;
+  color: #ffffff;
 }
 
 /* Menu Mobile: Efeitos */
@@ -811,14 +998,59 @@ export default {
   -webkit-animation-delay: 0s;
   animation: efeito-fade-in 0.5s forwards;
   animation-delay: 0s;
-  visibility: visible !important; 
+  visibility: visible !important;
 }
 
-@-webkit-keyframes efeito-fade-in { 0% { visibility: visible !important; opacity: 0; } 100% { visibility: visible; opacity: 1; } }
-@-o-keyframes efeito-fade-in { 0% { visibility: visible !important; opacity: 0; } 100% { visibility: visible; opacity: 1; } }
-@-ms-keyframes efeito-fade-in { 0% { visibility: visible !important; opacity: 0; } 100% { visibility: visible; opacity: 1; } }
-@-moz-keyframes efeito-fade-in { 0% { visibility: visible !important; opacity: 0; } 100% { visibility: visible; opacity: 1; } }
-@keyframes efeito-fade-in { 0% { visibility: visible !important; opacity: 0; } 100% { visibility: visible; opacity: 1; } }
+@-webkit-keyframes efeito-fade-in {
+  0% {
+    visibility: visible !important;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@-o-keyframes efeito-fade-in {
+  0% {
+    visibility: visible !important;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@-ms-keyframes efeito-fade-in {
+  0% {
+    visibility: visible !important;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@-moz-keyframes efeito-fade-in {
+  0% {
+    visibility: visible !important;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@keyframes efeito-fade-in {
+  0% {
+    visibility: visible !important;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
 .filter-fade-out {
   -webkit-animation: efeito-fade-out 0.5s forwards;
@@ -827,11 +1059,56 @@ export default {
   animation-delay: 0s;
 }
 
-@-webkit-keyframes efeito-fade-out { 0% { visibility: visible !important; opacity: 1; } 100% { visibility: hidden !important; opacity: 0; } }
-@-o-keyframes efeito-fade-out { 0% { visibility: visible !important; opacity: 1; } 100% { visibility: hidden !important; opacity: 0; } }
-@-ms-keyframes efeito-fade-out { 0% { visibility: visible !important; opacity: 1; } 100% { visibility: hidden !important; opacity: 0; } }
-@-moz-keyframes efeito-fade-out { 0% { visibility: visible !important; opacity: 1; } 100% { visibility: hidden !important; opacity: 0; } }
-@keyframes efeito-fade-out { 0% { visibility: visible !important; opacity: 1; } 100% { visibility: hidden !important; opacity: 0; } }
+@-webkit-keyframes efeito-fade-out {
+  0% {
+    visibility: visible !important;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden !important;
+    opacity: 0;
+  }
+}
+@-o-keyframes efeito-fade-out {
+  0% {
+    visibility: visible !important;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden !important;
+    opacity: 0;
+  }
+}
+@-ms-keyframes efeito-fade-out {
+  0% {
+    visibility: visible !important;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden !important;
+    opacity: 0;
+  }
+}
+@-moz-keyframes efeito-fade-out {
+  0% {
+    visibility: visible !important;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden !important;
+    opacity: 0;
+  }
+}
+@keyframes efeito-fade-out {
+  0% {
+    visibility: visible !important;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden !important;
+    opacity: 0;
+  }
+}
 
 @media (max-width: 80rem) {
   .filter-content-offers > * {
@@ -877,7 +1154,7 @@ export default {
     height: calc(100% - 60px);
   }
 
-  .filter-content span:nth-child(4){
+  .filter-content span:nth-child(4) {
     flex: 1;
   }
 
@@ -889,7 +1166,7 @@ export default {
     padding: 12px 20px;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 0.5px solid #D2D2D2;
+    border-bottom: 0.5px solid #d2d2d2;
   }
 
   .filter-content-header > p {
@@ -916,7 +1193,7 @@ export default {
 
   .btn-filter {
     width: 100px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     padding: 10px;
     border: 1px solid #707070;
     border-radius: 8px;
@@ -931,9 +1208,9 @@ export default {
   }
 
   .btn-filter:hover {
-    background-color: #FCAB10;
-    border: 1px solid #FCAB10;
-    color: #FFFFFF;
+    background-color: #fcab10;
+    border: 1px solid #fcab10;
+    color: #ffffff;
   }
 
   .btn-filter i {
@@ -957,7 +1234,7 @@ export default {
 
   .filter-breadcrumbs a:hover {
     text-decoration: underline;
-    color: #00A51C;
+    color: #00a51c;
   }
 
   .filter-breadcrumbs-separator {
@@ -1011,7 +1288,7 @@ export default {
   .filter-content-tags {
     display: flex;
     align-items: center;
-    background-color: #00A51C;
+    background-color: #00a51c;
     padding: 0px 8px;
     border-radius: 6px;
     margin-right: 10px;
@@ -1022,7 +1299,7 @@ export default {
     font-size: 1.3rem;
     font-weight: 600;
     padding: 6px 6px 6px 0px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   .filter-content-tags span:nth-child(2) {
@@ -1030,7 +1307,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 50%;
     padding: 3px 6px 4px 6px;
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
   }
 
@@ -1068,7 +1345,7 @@ export default {
     width: 100%;
     max-width: 100%;
     margin-right: 0%;
-    margin-bottom: 26px;
+    margin-bottom: 3.5rem;
     max-width: 100vw;
   }
 
@@ -1081,7 +1358,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 40px 26% 40px;
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
   }
 
   /* Filtro Área da Mensagem: Flex I */
@@ -1100,7 +1377,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     padding: 40px 26% 40px;
-    background-color: #FBFBFB;
+    background-color: #fbfbfb;
     flex: 1;
     display: none;
   }
@@ -1108,7 +1385,7 @@ export default {
   /* Filtro Mensagem "Sem Resultados": Flex I */
   .filter-content-no-offers i {
     font-size: 4rem;
-    background-color: #D2D2D2;
+    background-color: #d2d2d2;
     padding: 30px;
     margin-bottom: 20px;
     border-radius: 50%;
@@ -1145,7 +1422,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: #FFFFFF;
+    background: #ffffff;
     width: 90%;
     max-width: 100vw;
     height: 94%;
@@ -1154,12 +1431,12 @@ export default {
 
   .main-filter-params-box > div:nth-child(1) {
     display: flex;
-    background-color: #00A51C;
+    background-color: #00a51c;
     border-radius: 20px 20px 0 0;
     align-items: center;
     font-size: 2.2rem;
     font-weight: 600;
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 0px 26px;
   }
 
@@ -1174,7 +1451,7 @@ export default {
     flex-direction: column;
     width: calc(100% - 52px);
     max-width: 100vw;
-    height: 100%; 
+    height: 100%;
     justify-content: flex-start;
     align-items: flex-start;
     overflow: auto;
@@ -1193,7 +1470,7 @@ export default {
     max-width: 100vw;
     height: auto;
     padding: 26px 20px 26px 20px;
-    border-bottom: 0.5px solid #D2D2D2;
+    border-bottom: 0.5px solid #d2d2d2;
   }
 
   .main-filter-params-box > div:nth-child(2) > *:first-child {
@@ -1217,8 +1494,8 @@ export default {
     max-width: 100vw;
     border-radius: 0 0 20px 20px;
     padding: 0px 26px;
-    border-top: 0.5px solid #D2D2D2;
-    background-color: #FBFBFB;
+    border-top: 0.5px solid #d2d2d2;
+    background-color: #fbfbfb;
   }
 
   .btn-filter-box {
@@ -1233,39 +1510,39 @@ export default {
   }
 
   .btn-color-white {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border: 1px solid #707070;
     color: #363636;
   }
 
   .btn-color-white:hover {
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     border: 1px solid #707070;
     color: #363636;
   }
 
   .btn-color-white-active {
     background-color: rgba(0, 165, 28, 0.15);
-    border: 1px solid rgba(0, 165, 28, 0.35);;
-    color: #00A51C;
+    border: 1px solid rgba(0, 165, 28, 0.35);
+    color: #00a51c;
   }
 
   .btn-color-white-active:hover {
     background-color: rgba(0, 165, 28, 0.25);
-    border: 1px solid rgba(0, 165, 28, 0.45);;
-    color: #00A51C;
+    border: 1px solid rgba(0, 165, 28, 0.45);
+    color: #00a51c;
   }
 
   .btn-color-green {
-    background-color: #00A51C;
-    border: 1px solid #00A51C;
-    color: #FFFFFF;
+    background-color: #00a51c;
+    border: 1px solid #00a51c;
+    color: #ffffff;
   }
 
   .btn-color-green:hover {
-    background-color: #FCAB10;
-    border: 1px solid #FCAB10;
-    color: #FFFFFF;
+    background-color: #fcab10;
+    border: 1px solid #fcab10;
+    color: #ffffff;
   }
 }
 </style>
