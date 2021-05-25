@@ -20,7 +20,9 @@
           >Entre para comprar insumos agrícolas com melhor qualidade e preço,
           direto do produtor.</span
         >
-        <button class="btn-show-login">Entrar</button>
+        <router-link to="/login">
+          <button class="btn-show-login">Entrar</button>
+        </router-link>
         <hr class="divider-line" />
         <ul>
           <li class="menu-mobile-links-items">
@@ -112,7 +114,9 @@
           >Entre para comprar insumos agrícolas com melhor qualidade e preço,
           direto do produtor.</span
         >
-        <button class="btn-show-login">Entrar</button>
+        <router-link to="/login">
+          <button class="btn-show-login">Entrar</button>
+        </router-link>
       </div>
     </div>
 
@@ -388,7 +392,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 180px;
+  width: 200px;
   padding: 16px;
 }
 
@@ -397,6 +401,10 @@ export default {
   text-align: left;
   color: #707070;
   font-size: 1.3rem;
+}
+
+.menu-desktop-show-login a {
+  width: 100%;
 }
 
 .btn-show-login {
@@ -443,6 +451,10 @@ export default {
   text-align: left;
   color: #707070;
   font-size: 1.3rem;
+}
+
+.menu-mobile-show-login a {
+  width: 100%;
 }
 
 .divider-line {

@@ -1,6 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import LoginPage from "../views/LoginPage.vue";
+import LoginRecovery from "../views/LoginRecovery.vue";
+import LoginNewPass from "../views/LoginNewPass.vue";
+import TwoStepValidation from "../views/TwoStepValidation.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +13,26 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/login",
+    name: "LoginPage",
+    component: LoginPage,
+  },
+  {
+    path: "/esqueceuSenha",
+    name: "LoginRecovery",
+    component: LoginRecovery,
+  },
+  {
+    path: "/novaSenha",
+    name: "LoginNewPass",
+    component: LoginNewPass,
+  },
+  {
+    path: "/validaAcesso",
+    name: "TwoStepValidation",
+    component: TwoStepValidation,
   },
   {
     path: "/buscaOferta",
